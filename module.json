@@ -1,0 +1,20 @@
+{
+    "name": "Base",
+    "alias": "base",
+    "description": "the basic module",
+    "keywords": [],
+    "priority": 1,
+    "order": 0,
+    "providers": [
+        "Goodcatch\\Modules\\Base\\Providers\\EventServiceProvider",
+        "Goodcatch\\Modules\\Base\\Providers\\BaseServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "src/helpers.php"
+    ],
+    "requires": [],
+    "version": "dev-master",
+    "type": 0,
+    "minimumCoreVersion": ""
+}
