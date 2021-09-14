@@ -33,8 +33,7 @@ class ResourcesServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole ()) {
             $src = __DIR__ . '/../..';
             $this->publishes ([
-                $src . '/resources/js' =>  resource_path('js'),
-                $src . '/routes/web.php' => base_path('routes/web.php')
+                $src . '/public/dist' =>  public_path()
             ], 'laravel-modules');
         }
     }

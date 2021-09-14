@@ -1,5 +1,5 @@
-import common from '../common';
-const baseUrl = common.baseUrl;
+
+const baseUrl = window.baseUrl;
 
 export default {
 

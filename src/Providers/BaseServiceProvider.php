@@ -23,6 +23,7 @@ class BaseServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerTranslations();
+        $this->registerViews();
     }
 
     /**
@@ -40,7 +41,15 @@ class BaseServiceProvider extends ServiceProvider
         });
     }
 
-
+    /**
+     * Register views.
+     *
+     * @return void
+     */
+    public function registerViews()
+    {
+        $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), ['../../resources/views']), 'base');
+    }
 
     /**
      * Register translations.

@@ -1,5 +1,6 @@
 .DS_Store
 .idea
+node_modules
 /vendor
 composer.phar
 composer.lock
@@ -8,6 +9,4 @@ phpunit.phar
 tmp/
 /auth.json
 /public
-/package.json
-/webpack.mix.js
 .phpunit.result.cache
