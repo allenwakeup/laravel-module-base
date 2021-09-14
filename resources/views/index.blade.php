@@ -26,4 +26,4 @@
 <script type="javascript">
     window.baseUrl = '{{$base_url}}';
 </script>
-<script src="{{ mix('js/app.js','dist-module-base') }}"></script>
+<script src="{{ mix('js/app.js','dist/core') }}"></script>

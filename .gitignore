@@ -3,10 +3,8 @@
 node_modules
 /vendor
 composer.phar
-composer.lock
 phpunit.phar
 *.project
 tmp/
 /auth.json
-/public
 .phpunit.result.cache

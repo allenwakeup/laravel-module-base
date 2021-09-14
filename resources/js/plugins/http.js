@@ -2,7 +2,6 @@ import qs from 'qs';
 import axios from 'axios'
 import {message} from 'ant-design-vue';
 import router from './router'
-import common from '@/plugins/apis/common';
 import {STORE_ADMIN, STORE_SELLER, STORE_HOME, TOKEN, TOKEN_TYPE} from '@/plugins/constant'
 import {returnError, moduleStorageHelpers} from '@/plugins/function'
 
@@ -10,7 +9,7 @@ axios.defaults.timeout = 10 * 1000;  // 请求超时
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 // axios.defaults.withCredentials = true; // 允许跨域携带cookie
 
-const baseUrlRegExp = new RegExp(common.baseUrl.replace(/\/*$/i,'/'), 'ig');
+const baseUrlRegExp = new RegExp(window.baseUrl.replace(/\/*$/i,'/'), 'ig');
 
 function getSessType(url){
     url = url.replace(baseUrlRegExp, '')
