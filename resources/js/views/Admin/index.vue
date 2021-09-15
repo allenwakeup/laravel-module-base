@@ -70,7 +70,7 @@
                 <div class="admin_menu mobile">
                     <div class="admin_menu_title"><span :class="'shows'">基础模块</span></div>
                         <a-menu mode="inline" theme="dark">
-                            <a-menu-item @click="to_nav('/Admin/index')"><a-font class="afont menu_icon" type="iconshouye" /><span>系统首页</span></a-menu-item>
+
                             <a-sub-menu v-for="v in menus" :key="v.id">
                                 <span slot="title"><a-font class="afont menu_icon" :type="v.icon||'iconshouye'" /><span>{{v.name}}</span></span>
                                 <template v-for="vo in (v.children||[])">
@@ -164,14 +164,19 @@ export default {
             });
         },
         to_nav(path, id){
-            this.reload()
-
-            this.selectMenu({
-                selected: getMenuPathById(this.menus, id),
-                route: path
+            const that = this;
+            this.$hasRoute(this.$router, {path}).then(() => {
+                that.reload()
+                that.selectMenu({
+                    selected: getMenuPathById(that.menus, id),
+                    route: path
+                })
+                that.$router.push(path);
+            }, (res) => {
+                //the route is not exists.
+                console.log('路由不存在' + path)
+                window.location.href = path;
             })
-
-            this.$router.push(path);
         },
 
         // 判断是否宽度小于多少

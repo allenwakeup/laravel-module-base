@@ -7,7 +7,6 @@ Vue.use(Router)
 export default new Router({
     mode:'history',
     routes: [
-        ...admin,
-        {path: '*',name: '404',component: () => import('@/views/Error/404')},
+        ...admin
     ]
 })

@@ -221,6 +221,20 @@ export function getMenuPathById($menu, id){
     return res;
 }
 
+export function hasRoute(vueRouter, route_resolve){
+    return new Promise((resolve, reject) =>{
+        try {
+            if (vueRouter && vueRouter.resolve(route_resolve).resolved.matched.length > 0) {
+                resolve(true);
+            }else{
+                reject(false)
+            }
+        }catch (err) {
+            reject(err)
+        }
+    });
+}
+
 function padLeftZero (str) {
     return ('00' + str).substr(str.length);
 }

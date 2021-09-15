@@ -12,11 +12,5 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/{any}', 'SpaController@index')
-    ->where('any', '^((?!goodcatch\/).)*$');
-Route::get('/{any}/goodcatch/' . module_route_prefix() . '/{module}')
-    ->where('any', '^((?!api).)*$')
-    ->where('module', '.*');
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/Admin/goodcatch/' . module_route_prefix() . '/base/{any}', 'SpaController@index')
+    ->where('any', '.*');

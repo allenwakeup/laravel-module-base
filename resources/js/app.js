@@ -12,10 +12,9 @@ import App from '@/views/App'
 import 'ant-design-vue/dist/antd.css';
 import {post,get,put,deletes,postfile,toJson,isEmpty,apiHandle} from '@/plugins/http.js' // 请求方式中间件
 import {api} from '@/plugins/api' // 后端API
-import {returnInfo,formatFloat} from '@/plugins/function' // 辅助方法
+import {returnInfo,formatFloat,hasRoute} from '@/plugins/function' // 辅助方法
 import VueLazyload from 'vue-lazyload' // 懒加载图片
 import 'babel-polyfill' // 兼容IE
-import VueAMap from 'vue-amap'
 
 
 Vue.prototype.$api=api;
@@ -29,6 +28,7 @@ Vue.prototype.$isEmpty=isEmpty;
 Vue.prototype.$apiHandle=apiHandle;
 Vue.prototype.$returnInfo=returnInfo; // api返回信息做处理
 Vue.prototype.$formatFloat=formatFloat; // 浮点型格式化
+Vue.prototype.$hasRoute=hasRoute; // 是否存在路由
 
 Vue.config.productionTip = false;
 
@@ -49,11 +49,17 @@ router.afterEach(() => {
 
 // 重复路由报错
 const _vue_router_push = VueRouter.prototype.push;
+const { isNavigationFailure, NavigationFailureType } = VueRouter;
 VueRouter.prototype.push = function push(location) {
     _vue_router_push
         .call(this, location)
         .catch(err => {
-            if (err.name !== "NavigationDuplicated") {
+            if (isNavigationFailure(err, NavigationFailureType.redirected)) {
+                // 是否发生重定向
+            }
+
+            if (isNavigationFailure(err, NavigationFailureType.duplicated)) {
+                // 是否发生重复路由
                 throw err;
             }
         })

@@ -48,7 +48,10 @@ class BaseServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), ['../../resources/views']), 'base');
+        $this->loadViewsFrom(
+            [module_path('base', 'resources/views')],
+            'base'
+        );
     }
 
     /**
