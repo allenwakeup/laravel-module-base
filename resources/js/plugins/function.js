@@ -224,10 +224,11 @@ export function getMenuPathById($menu, id){
 export function hasRoute(vueRouter, route_resolve){
     return new Promise((resolve, reject) =>{
         try {
-            if (vueRouter && vueRouter.resolve(route_resolve).resolved.matched.length > 0) {
-                resolve(true);
+            const resolved_routes = vueRouter.resolve(route_resolve).resolved;
+            if (resolved_routes.matched.length > 0) {
+                resolve(resolved_routes.matched);
             }else{
-                reject(false)
+                reject('route not found')
             }
         }catch (err) {
             reject(err)

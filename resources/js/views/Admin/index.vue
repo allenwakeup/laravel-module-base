@@ -155,7 +155,9 @@ export default {
 
                 if(this.pref.menu){
                     if(!this.$isEmpty(this.pref.menu.route)){
-                        this.$router.push(this.pref.menu.route);
+                        if(this.$route.path !== this.pref.menu.route){
+                            this.$router.push(this.pref.menu.route);
+                        }
                     }
                     if(this.pref.menu.selected && this.pref.menu.selected.length > 0){
                         this.defaultOpenKeys = this.pref.menu.selected;
@@ -165,18 +167,23 @@ export default {
         },
         to_nav(path, id){
             const that = this;
-            this.$hasRoute(this.$router, {path}).then(() => {
-                that.reload()
-                that.selectMenu({
-                    selected: getMenuPathById(that.menus, id),
-                    route: path
+
+            this.$hasRoute(this.$router, {path})
+                .then(resolved_routes => {
+                    that.reload()
+                    that.selectMenu({
+                        selected: getMenuPathById(that.menus, id),
+                        route: path
+                    })
+                    that.$router.push(path);
+                }).catch(e => {
+                    console.log('路由不存在' + path)
+                    that.selectMenu({
+                        selected: getMenuPathById(that.menus, id),
+                        route: path
+                    })
+                    window.location.href = path;
                 })
-                that.$router.push(path);
-            }, (res) => {
-                //the route is not exists.
-                console.log('路由不存在' + path)
-                window.location.href = path;
-            })
         },
 
         // 判断是否宽度小于多少

@@ -187,7 +187,9 @@ var adminCommonStore = Object(vuex__WEBPACK_IMPORTED_MODULE_7__["createNamespace
 
         if (_this2.pref.menu) {
           if (!_this2.$isEmpty(_this2.pref.menu.route)) {
-            _this2.$router.push(_this2.pref.menu.route);
+            if (_this2.$route.path !== _this2.pref.menu.route) {
+              _this2.$router.push(_this2.pref.menu.route);
+            }
           }
 
           if (_this2.pref.menu.selected && _this2.pref.menu.selected.length > 0) {
@@ -200,16 +202,19 @@ var adminCommonStore = Object(vuex__WEBPACK_IMPORTED_MODULE_7__["createNamespace
       var that = this;
       this.$hasRoute(this.$router, {
         path: path
-      }).then(function () {
+      }).then(function (resolved_routes) {
         that.reload();
         that.selectMenu({
           selected: Object(_plugins_function__WEBPACK_IMPORTED_MODULE_9__["getMenuPathById"])(that.menus, id),
           route: path
         });
         that.$router.push(path);
-      }, function (res) {
-        //the route is not exists.
+      }).catch(function (e) {
         console.log('路由不存在' + path);
+        that.selectMenu({
+          selected: Object(_plugins_function__WEBPACK_IMPORTED_MODULE_9__["getMenuPathById"])(that.menus, id),
+          route: path
+        });
         window.location.href = path;
       });
     },
