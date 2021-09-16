@@ -16,7 +16,7 @@ class PermissionTableSeeder extends Seeder
                 'children' => [
                     [
                         'name' => '模块管理',
-                        'link' => $this->getSeedsApiUri('modules'),
+                        'link' => $this->getSeedsModuleApiUri('base', 'modules'),
                     ]
                 ]
             ]
@@ -25,8 +25,9 @@ class PermissionTableSeeder extends Seeder
 
     public function getSeedsPermissionGroups (){
         return [
-            '模块化管理' => [
-                'modules'
+            // 模块化管理
+            $this->getSeedsModuleMenuGroupName('base', '模块化管理') => [
+                'base' . '.modules'
             ]
         ];
     }
