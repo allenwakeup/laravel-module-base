@@ -248,8 +248,9 @@ var adminCommonStore = Object(vuex__WEBPACK_IMPORTED_MODULE_7__["createNamespace
         _this3.$message.success(res.msg);
 
         vm.storeLogout();
-
-        _this3.$router.push('/Admin/login');
+        setTimeout(function () {
+          window.location.href = '/Admin/login';
+        }, 1000);
       });
     }
   }),

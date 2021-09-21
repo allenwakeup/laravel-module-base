@@ -157,10 +157,12 @@ trait PermissionSeedsTrait{
             foreach($menus as $k => $menu){
                 $name = Arr::get($menu, 'name');
                 $link = Arr::get($menu, 'link', '#');
+                $icon = Arr::get($menu, 'icon', '');
                 $unique = [
-                    'name' => $name,
-                    'link' => $link,
-                    'pid' => $pid,
+                    'name'  => $name,
+                    'link'  => $link,
+                    'icon'  => $icon,
+                    'pid'   => $pid,
                 ];
                 DB::table($this->tb_menus)->updateOrInsert($unique, [
                     'is_type' => 0,

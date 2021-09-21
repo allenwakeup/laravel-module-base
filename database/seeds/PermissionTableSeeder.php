@@ -13,9 +13,11 @@ class PermissionTableSeeder extends Seeder
         return [
             [
                 'name' => '系统模块',
+                'icon' => 'icon-gc-main',
                 'children' => [
                     [
                         'name' => '模块管理',
+                        'icon' => 'icon-gc-modules',
                         'link' => $this->getSeedsModuleApiUri('base', 'modules'),
                     ]
                 ]
