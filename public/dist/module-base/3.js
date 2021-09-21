@@ -33,7 +33,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   props: {},
@@ -109,7 +108,7 @@ __webpack_require__.r(__webpack_exports__);
     del: function del() {
       var _this = this;
 
-      if (this.selectedRowKeys.length == 0) {
+      if (this.selectedRowKeys.length === 0) {
         return this.$message.error('未选择数据.');
       }
 
@@ -123,7 +122,7 @@ __webpack_require__.r(__webpack_exports__);
           var ids = _this.selectedRowKeys.join(',');
 
           _this.$delete(_this.$api.goodcatchModule + '/' + ids).then(function (res) {
-            if (res.code == 200) {
+            if (res.code === 200) {
               _this.onload();
 
               _this.$message.success('删除成功');

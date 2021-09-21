@@ -13,7 +13,7 @@ class PermissionTableSeeder extends Seeder
         return [
             [
                 'name' => '系统模块',
-                'icon' => 'icon-gc-main',
+                'icon' => 'icon-gc-base',
                 'children' => [
                     [
                         'name' => '模块管理',

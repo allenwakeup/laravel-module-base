@@ -2,7 +2,6 @@
     <div class="qingwu">
         <div class="admin_table_page_title">模块化列表</div>
         <div class="unline underm"></div>
-
         <div class="admin_table_handle_btn">
             <a-button @click="$router.push('/Admin/goodcatch/admin/modules/form')" type="primary" icon="plus">添加</a-button>
             <a-button class="admin_delete_btn" type="danger" icon="delete" @click="del">批量删除</a-button>
@@ -63,7 +62,7 @@ export default {
         },
         // 删除
         del(){
-            if(this.selectedRowKeys.length==0){
+            if(this.selectedRowKeys.length===0){
                 return this.$message.error('未选择数据.');
             }
             this.$confirm({
@@ -75,7 +74,7 @@ export default {
                 onOk:()=> {
                     let ids = this.selectedRowKeys.join(',');
                     this.$delete(this.$api.goodcatchModule+'/'+ids).then(res=>{
-                        if(res.code == 200){
+                        if(res.code === 200){
                             this.onload();
                             this.$message.success('删除成功');
                         }else{
