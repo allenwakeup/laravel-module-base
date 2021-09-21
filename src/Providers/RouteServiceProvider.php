@@ -10,7 +10,7 @@ use Goodcatch\Modules\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    protected $namespace = 'Goodcatch\\Modules\\Base\\Http\\Controllers\\';
+    protected $namespace = 'Goodcatch\\Modules\\Base\\Http\\Controllers';
 
     protected $path;
 
