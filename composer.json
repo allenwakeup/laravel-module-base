@@ -20,7 +20,7 @@
     "require-dev": {
         "illuminate/support": "^8.0",
         "laravel/framework": "^8.0",
-        "laravel/helpers": "^1.1",
+        "laravel/helpers": "^8.0",
         "phpunit/phpunit": "^9.0"
     },
     "autoload": {
