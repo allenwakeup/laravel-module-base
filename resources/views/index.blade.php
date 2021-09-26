@@ -9,9 +9,17 @@
     <title>{{$title}} {{$goodcatch}}</title>
     <meta name="keywords" content="{{$keywords}}">
     <meta name="description" content="{{$description}}" />
+    <link rel="stylesheet" href="/dist/vendor/ant-design-vue/antd.min.css">
+
     <link rel="stylesheet" href="{{ mix('css/app.css','dist') }}">
-    <link rel="stylesheet" href="{{ mix('css/home.css','dist') }}">
-    <link rel="stylesheet" href="{{ mix('css/style.css','dist') }}">
+    <link rel="stylesheet" href="{{ mix('css/style.css','dist/module-base') }}">
+
+    <script src="/dist/vendor/vue/vue.min.js"></script>
+    <script src="/dist/vendor/vue-router/vue-router.min.js"></script>
+    <script src="/dist/vendor/moment/moment-with-locales.min.js"></script>
+    <script src="/dist/vendor/clipboard/clipboard.min.js"></script>
+    <script src="/dist/vendor/ant-design-vue/antd.min.js"></script>
+    <script src="/dist/vendor/ant-design-vue/antd-with-locales.min.js"></script>
 </head>
 
 <body>
