@@ -142,6 +142,8 @@ trait PermissionSeedsTrait{
                         'apis' => $apis,
                         'pid' => $group_id
                     ];
+                    unset($data['apis']);
+                    unset($data['pid']);
                     $t_permissions->updateOrInsert($unique, $data);
                     $this->addSeedsRolePermissions(
                         $this->admin_role_id,
