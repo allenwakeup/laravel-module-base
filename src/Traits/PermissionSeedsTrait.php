@@ -163,10 +163,10 @@ trait PermissionSeedsTrait{
                 $unique = [
                     'name'  => $name,
                     'link'  => $link,
-                    'icon'  => $icon,
                     'pid'   => $pid,
                 ];
                 DB::table($this->tb_menus)->updateOrInsert($unique, [
+                    'icon'  => $icon,
                     'is_type' => 0,
                     'is_sort' => 0
                 ]);
