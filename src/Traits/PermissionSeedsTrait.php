@@ -160,6 +160,7 @@ trait PermissionSeedsTrait{
                 $name = Arr::get($menu, 'name');
                 $link = Arr::get($menu, 'link', '#');
                 $icon = Arr::get($menu, 'icon', '');
+                $is_type = Arr::get($menu, 'is_type', 0);
                 $unique = [
                     'name'  => $name,
                     'link'  => $link,
@@ -167,7 +168,7 @@ trait PermissionSeedsTrait{
                 ];
                 DB::table($this->tb_menus)->updateOrInsert($unique, [
                     'icon'  => $icon,
-                    'is_type' => 0,
+                    'is_type' => $is_type,
                     'is_sort' => 0
                 ]);
                 $children = Arr::get($menu, 'children', []);
