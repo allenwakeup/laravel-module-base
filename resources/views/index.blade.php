@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/dist/vendor/ant-design-vue/antd.min.css">
 
     <link rel="stylesheet" href="{{ mix('css/app.css','dist') }}">
+    <link rel="stylesheet" href="{{ mix('css/style.css','dist') }}">
     <link rel="stylesheet" href="{{ mix('css/style.css','dist/module-base') }}">
 
     <script src="/dist/vendor/vue/vue.min.js"></script>
@@ -33,5 +34,6 @@
  
 <script type="text/javascript">
     window.baseUrl = '{{$base_url}}';
+    window.apiTimeout = {{isset($api_timeout) ? $api_timeout : 'false'}};
 </script>
 <script src="{{ mix('js/app.js','dist/module-base') }}"></script>
