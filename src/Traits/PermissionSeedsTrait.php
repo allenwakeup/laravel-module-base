@@ -135,7 +135,6 @@ trait PermissionSeedsTrait{
                     $api_actions = $spec_apis_actions;
                     $resource_name = $resource;
                 }
-                $t_permissions = DB::table($this->tb_permissions);
                 foreach($api_actions as $action => $data){
                     $apis = $resource_name . '.' . $action;
                     $unique = [
@@ -144,6 +143,7 @@ trait PermissionSeedsTrait{
                     ];
                     unset($data['apis']);
                     unset($data['pid']);
+                    $t_permissions = DB::table($this->tb_permissions);
                     $t_permissions->updateOrInsert($unique, $data);
                     $this->addSeedsRolePermissions(
                         $this->admin_role_id,
