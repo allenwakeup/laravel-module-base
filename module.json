@@ -3,7 +3,7 @@
     "alias": "base",
     "description": "the basic module",
     "keywords": [],
-    "priority": 1,
+    "priority": 999,
     "order": 0,
     "providers": [
         "Goodcatch\\Modules\\Base\\Providers\\EventServiceProvider",
