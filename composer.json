@@ -67,5 +67,6 @@
             "type": "composer",
             "url": "http://mvn.dev.huangyebl.com/repository/composer-public"
         }
-    }
+    },
+    "version": "2.0.0.1"
 }
