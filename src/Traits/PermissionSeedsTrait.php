@@ -163,7 +163,7 @@ trait PermissionSeedsTrait{
                 $is_type = Arr::get($menu, 'is_type', 0);
                 $unique = [
                     'name'  => $name,
-                    'link_'  => $link,
+                    'link'  => $link,
                     'pid'   => $pid,
                 ];
                 DB::table($this->tb_menus)->updateOrInsert($unique, [
