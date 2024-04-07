@@ -15,7 +15,7 @@
     "require": {
         "php": ">=7.3",
         "ext-json": "*",
-        "goodcatch/laravel-modules": "dev-master"
+        "goodcatch/laravel-modules": "^1.0"
     },
     "require-dev": {
         "illuminate/support": "^8.0",
@@ -68,5 +68,5 @@
             "url": "http://mvn.dev.huangyebl.com/repository/composer-public"
         }
     },
-    "version": "1.0.0.2"
+    "version": "1.0.0.3"
 }
