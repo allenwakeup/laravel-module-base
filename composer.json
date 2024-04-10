@@ -14,15 +14,15 @@
 
     "require": {
         "php": ">=7.3",
-        "ext-json": "*",
-        "goodcatch/laravel-modules": "^1.0"
+        "ext-json": "*"
     },
     "require-dev": {
         "illuminate/support": "^8.0",
         "laravel/framework": "^8.0",
         "laravel/helpers": "^1.4.1",
         "phpunit/phpunit": "^9.0",
-        "elendev/composer-push": "*"
+        "elendev/composer-push": "*",
+        "goodcatch/laravel-modules": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -68,5 +68,5 @@
             "url": "http://mvn.dev.huangyebl.com/repository/composer-public"
         }
     },
-    "version": "1.0.0.3"
+    "version": "1.0.0.4"
 }
