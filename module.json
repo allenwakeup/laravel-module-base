@@ -3,7 +3,7 @@
     "alias": "base",
     "description": "the basic module",
     "keywords": [],
-    "priority": 999,
+    "priority": 1,
     "order": 0,
     "providers": [
         "Goodcatch\\Modules\\Base\\Providers\\EventServiceProvider",
@@ -15,6 +15,5 @@
     ],
     "requires": [],
     "version": "dev-master",
-    "type": 0,
-    "minimumCoreVersion": ""
+    "type": 1
 }

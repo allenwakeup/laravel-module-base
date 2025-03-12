@@ -8,6 +8,8 @@ export default new Router({
     mode:'history',
     routes: [
         ...admin,
+        {path: '/Admin/index',name: 'homepage',component: () => import('@this/views/Error/404')},
         {path: '/Admin/goodcatch/m/base/*', name: '404', component: () => import('@/views/Error/404')},
+        {path: '/Admin/goodcatch/m/*', name: 'modules', component: () => import('@this/views/Error/404')},
     ]
 })

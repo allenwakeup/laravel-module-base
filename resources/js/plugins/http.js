@@ -60,12 +60,12 @@ axios.interceptors.request.use(function (config) {
     let token = getToken(config.url);
 
     if(!isEmpty(token)){
-		config.headers['Authorization'] = 'Bearer '+token; // 如果token 存在则携带token访问
+        config.headers['Authorization'] = 'Bearer '+token; // 如果token 存在则携带token访问
     }
 
     return config;
 
-    }, function (error) {
+}, function (error) {
     // 对请求错误做些什么
     return Promise.reject(error);
 });
@@ -79,12 +79,12 @@ axios.interceptors.response.use(function (res) {
 
     if(res.status !== 200){
         return message.error(res.statusText);
-	}
+    }
 
     const sess_type = getSessType(res.config.url);
 
-	// 如果出现401 代表token 失效
-	if(res.data.code === 401){
+    // 如果出现401 代表token 失效
+    if(res.data.code === 401){
         message.error(res.data.msg);
         removeToken(res.config.url, sess_type);
         if(sess_type === STORE_ADMIN){
@@ -97,26 +97,26 @@ axios.interceptors.response.use(function (res) {
     }
 
     // 如果出现402 代表接口无权限 失效
-	if(res.data.code === 402){
+    if(res.data.code === 402){
         return message.error(res.data.msg);
     }
 
     // 429 代表请求太频繁
-	if(res.data.code === 429){
+    if(res.data.code === 429){
         return message.error("您请求太频繁了，请休息一会");
-	}
+    }
 
-	// 刷新了token 则重新存放
-	if(!isEmpty(res.headers.authorization)){
+    // 刷新了token 则重新存放
+    if(!isEmpty(res.headers.authorization)){
         const token = res.headers.authorization.split(" ")[1];
         setToken(res.config.url, token, sess_type)
-	}
+    }
 
-	// 防止多次出现
+    // 防止多次出现
     message.destroy();
 
     return res;
-  }, function (err) {
+}, function (err) {
     // eslint-disable-next-line no-console
     // console.log(err);
 
@@ -154,7 +154,7 @@ axios.interceptors.response.use(function (res) {
                 break;
             default:
                 message.error(err.response.statusText+",error_code："+err.response.status);
-            break;
+                break;
         }
 
     }else{
@@ -163,12 +163,12 @@ axios.interceptors.response.use(function (res) {
 
     // 对响应错误做点什么
     return Promise.reject(err);
-  });
+});
 
 
 /*对象转json*/
 export function toJson(data){
-  return qs.stringify(data);
+    return qs.stringify(data);
 }
 
 /* apihandle */
@@ -183,10 +183,10 @@ export function apiHandle(url,id=0){
 
 /*判断是否为空*/
 export function isEmpty(str){
-  if(str === '' || str === null || str === undefined){
-    return true;
-  }
-  return false;
+    if(str === '' || str === null || str === undefined){
+        return true;
+    }
+    return false;
 }
 
 
@@ -196,43 +196,43 @@ export function isEmpty(str){
  * @param {Object} params [请求时携带的参数]
  */
 export function get(url, params){
- return new Promise((resolve, reject) =>{
-  axios.get(url, {
-   params: params
-  })
-  .then(res => {
-   resolve(res.data);
-  })
-  .catch(err => {
-   reject(err.data)
-  })
- });
+    return new Promise((resolve, reject) =>{
+        axios.get(url, {
+            params: params
+        })
+            .then(res => {
+                resolve(res.data);
+            })
+            .catch(err => {
+                reject(err.data)
+            })
+    });
 }
 
 export function put(url, params){
- return new Promise((resolve, reject) =>{
-  axios.put(url, qs.stringify(params))
-  .then(res => {
-   resolve(res.data);
-  }, function(){})
-  .catch(err => {
-   reject(err.data)
-  })
- });
+    return new Promise((resolve, reject) =>{
+        axios.put(url, qs.stringify(params))
+            .then(res => {
+                resolve(res.data);
+            }, function(){})
+            .catch(err => {
+                reject(err.data)
+            })
+    });
 }
 
 export function deletes(url, params){
- return new Promise((resolve, reject) =>{
-  axios.delete(url, {
-   params: params
-  })
-  .then(res => {
-   resolve(res.data);
-  })
-  .catch(err => {
-   reject(err.data)
-  })
- });
+    return new Promise((resolve, reject) =>{
+        axios.delete(url, {
+            params: params
+        })
+            .then(res => {
+                resolve(res.data);
+            })
+            .catch(err => {
+                reject(err.data)
+            })
+    });
 }
 /**
  * post方法，对应post请求
@@ -240,15 +240,15 @@ export function deletes(url, params){
  * @param {Object} params [请求时携带的参数]
  */
 export function post(url, params) {
- return new Promise((resolve, reject) => {
-  axios.post(url, qs.stringify(params))
-  .then(res => {
-   resolve(res.data);
-  })
-  .catch(err => {
-   reject(err.data)
-  })
- });
+    return new Promise((resolve, reject) => {
+        axios.post(url, qs.stringify(params))
+            .then(res => {
+                resolve(res.data);
+            })
+            .catch(err => {
+                reject(err.data)
+            })
+    });
 }
 
 /**
@@ -258,13 +258,13 @@ export function post(url, params) {
  */
 export function postfile(url, params) {
     return new Promise((resolve, reject) => {
-     axios.post(url, params,{headers:{'Content-Type': 'multipart/form-data'}})
-     .then(res => {
-      resolve(res.data);
-     })
-     .catch(err => {
-      reject(err.data)
-     })
+        axios.post(url, params,{headers:{'Content-Type': 'multipart/form-data'}})
+            .then(res => {
+                resolve(res.data);
+            })
+            .catch(err => {
+                reject(err.data)
+            })
     });
-   }
- //Vue.use(axios)
+}
+//Vue.use(axios)

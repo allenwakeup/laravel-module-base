@@ -10,22 +10,22 @@ export default {
     components: {},
     props: {},
     data() {
-      return {
-          locale: zhCN,
-      };
+        return {
+            locale: zhCN,
+        };
     },
     watch: {},
     computed: {},
     methods: {},
     created() {},
     mounted() {},
-    
+
 };
 </script>
 <style lang="scss">
 #app{
-  color:#333;
-  font-size: 14px;
-  height: 100%;
+    color:#333;
+    font-size: 14px;
+    height: 100%;
 }
 </style>

@@ -168,8 +168,7 @@ trait PermissionSeedsTrait{
                 ];
                 DB::table($this->tb_menus)->updateOrInsert($unique, [
                     'icon'  => $icon,
-                    'is_type' => $is_type,
-                    'is_sort' => 0
+                    'is_type' => $is_type
                 ]);
                 $children = Arr::get($menu, 'children', []);
                 $created = DB::table($this->tb_menus)->where($unique)->first();

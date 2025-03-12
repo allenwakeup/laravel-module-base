@@ -1,12 +1,12 @@
 <template>
-    <div class="qingwu">
+    <div>
         <div class="admin_table_page_title">
-            <a-button @click="$router.back()" class="float_right" icon="arrow-left">返回</a-button>
+            <a-button type="link" @click="$router.back()" class="float_right" icon="arrow-left">返回</a-button>
             模块编辑
         </div>
         <div class="unline underm"></div>
         <div class="admin_form">
-            <a-form-model :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
+            <a-form-model ref="form" :model="form" :rules="rules" :label-col="{ span: 6 }"  :wrapper-col="{ span: 16 }" dusk="admin-form">
                 <a-form-model-item label="名称">
                     <a-input v-model="info.name"></a-input>
                 </a-form-model-item>
@@ -26,7 +26,9 @@
 </template>
 
 <script>
+import { MixinForm, MixinStore } from '@/plugins/mixins/admin'
 export default {
+    mixins: [ MixinForm, MixinStore ],
     components: {},
     props: {},
     data() {
@@ -41,48 +43,59 @@ export default {
     methods: {
         handleSubmit(){
 
-            // 验证代码处
-            if(this.$isEmpty(this.info.name)){
-                return this.$message.error('名称不能为空');
-            }
-            if(this.$isEmpty(this.info.alias)){
-                return this.$message.error('别名不能为空');
-            }
+            this.$refs.form.validate(valid => {
 
-            let api = this.$apiHandle(this.$api.goodcatchModule,this.id);
-            if(api.status){
-                this.$put(api.url,this.info).then(res=>{
-                    if(res.code == 200){
-                        this.$message.success(res.msg)
-                        return this.$router.back();
-                    }else{
-                        return this.$message.error(res.msg)
-                    }
-                })
-            }else{
-                this.$post(api.url,this.info).then(res=>{
-                    if(res.code == 200){
-                        this.$message.success(res.msg)
-                        return this.$router.back();
-                    }else{
-                        return this.$message.error(res.msg)
-                    }
-                })
-            }
+                const params = Object.assign({}, this.form);
 
+
+                if(valid){
+                    let api = this.$apiHandle(this.$api.adminModules,this.id);
+                    if(api.status){
+                        this.$put(api.url,params).then(res=>{
+                            if(res.code === 200){
+                                this.$message.success(res.msg);
+                                this.sendMessageFormUpdated();
+                                this.$router.back();
+                                return this.$tabs.close();
+                            }else{
+                                return this.$message.error(res.msg)
+                            }
+                        })
+                    }else{
+                        this.$post(api.url,params).then(res=>{
+                            if(res.code === 200 || res.code === 201){
+                                this.$message.success(res.msg);
+                                this.sendMessageFormUpdated();
+                                this.$router.back();
+                                return this.$tabs.close();
+                            }else{
+                                return this.$message.error(res.msg)
+                            }
+                        })
+                    }
+                } else {
+                    this.$message.error('请按要求填写表单！');
+                    return false;
+                }
+            });
 
         },
-        get_info(){
-            this.$get(this.$api.goodcatchModule+'/'+this.id).then(res=>{
-                this.info = res.data;
+        getForm(){
+            this.$get(this.$api.adminModules+'/'+this.id).then(res=>{
+                if(res.code === 200 && !!res.data) {
+                    this.form = res.data;
+                }
             })
         },
+
         // 获取列表
         onload(){
+
+
             // 判断你是否是编辑
             if(!this.$isEmpty(this.$route.params.id)){
                 this.id = this.$route.params.id;
-                this.get_info();
+                this.getForm();
             }
         },
 
@@ -97,3 +110,4 @@ export default {
 <style lang="scss" scoped>
 
 </style>
+
